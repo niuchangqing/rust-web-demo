@@ -1,0 +1,43 @@
+[package]
+name = "rust-web-demo"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+#rbatis start
+rbatis = { version = "3.0.27", default-features = false, features = ["runtime-tokio-rustls","mysql"] }
+log = "0.4.14"
+fast_log = "1.4.9"
+rbson = "2.0"
+#rbatis end
+
+#json start
+serde = "1.0.132"
+serde_json = "1.0.73"
+#json end
+
+
+lazy_static = "1.4.0"
+
+#tokio
+tokio = { version = "1.15.0", features = ["full"]}
+
+#salvo web start
+salvo = { version = "0.16", features = ["full"] }
+#salvo web end
+
+#log start
+tracing-subscriber = "0.3.3"
+tracing = "0.1.29"
+#log end
+
+#配置文件
+dotenv = "0.15.0"
+
+
+#async-std = "1.10.0"
+futures = "0.3.19"
+
+#sqlx = { version = "0.5", features = [ "runtime-tokio-rustls" , "mysql" ] }
