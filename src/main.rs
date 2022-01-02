@@ -6,6 +6,7 @@ use tracing::Level;
 use rust_web_demo::controller;
 use rust_web_demo::domain::response::ResultVo;
 use rust_web_demo::service::SERVICE;
+use rust_web_demo::error::CustomError;
 
 #[tokio::main]
 async fn main() {
@@ -16,7 +17,11 @@ async fn main() {
         .push(
             Router::with_path("/user")
                 .get(controller::user_controller::get_user)
-                .post(controller::user_controller::add_user),
+                .post(controller::user_controller::add_user)
+                .push(
+                    Router::with_path("/file")
+                        .get(controller::user_controller::test_error),
+                ),
         );
     Server::new(TcpListener::bind(address.as_str())).serve(router).await;
 }
