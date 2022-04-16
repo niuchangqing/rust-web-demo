@@ -12,7 +12,7 @@ use rust_web_demo::error::CustomError;
 async fn main() {
     //初始化
     let address = String::from("127.0.0.1:").add(SERVICE.config.port.as_str());
-    tracing::info!(">>>>>>>>>> server address {}", &address);
+    log::info!(">>>>>>>>>> server address {}", address);
     let router = Router::new()
         .push(
             Router::with_path("/user")
@@ -22,6 +22,7 @@ async fn main() {
                     Router::with_path("/file")
                         .get(controller::user_controller::test_error),
                 ),
-        );
+        )
+        ;
     Server::new(TcpListener::bind(address.as_str())).serve(router).await;
 }
